@@ -20,7 +20,7 @@ def get_db():
 async def get_server(id: int, db: Session = Depends(get_db)):
     return crud.get_server(db, id)
 
-@app.get("/api/server/all")
+@app.get("/api/server")
 async def get_all_servers(db: Session = Depends(get_db)):
     return crud.get_all_servers(db)
 

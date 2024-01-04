@@ -1,0 +1,10 @@
+{
+  "include": ["src"],
+  "exclude": ["**/node_modules", "**/__pycache__"],
+  "venvPath": ".env",
+  "venv": ".env",
+  "pythonVersion": "3.7",
+  "pythonPlatform": "Linux",
+  "typeCheckingMode": "strict"
+}
+

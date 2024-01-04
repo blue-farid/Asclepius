@@ -1,4 +1,4 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     db_name: str
@@ -8,6 +8,6 @@ class Settings(BaseSettings):
     db_port: str
 
     class Config:
-        env_file = "../../config.env"
+        env_file = "../config.env"
 
 settings = Settings()

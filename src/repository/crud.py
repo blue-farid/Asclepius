@@ -1,6 +1,6 @@
-from models import Server
+from .models import Server
 from sqlalchemy.orm import Session
-from schema import ServerCreate
+from .schema import ServerCreate
 
 def get_server(db: Session, id: int):
     return db.query(Server).filter(Server.id == id).first()
