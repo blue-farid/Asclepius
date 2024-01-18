@@ -12,3 +12,6 @@ class Server(ServerBase):
     success: int
     failure: int
     last_failure: datetime
+
+    class Config:
+        from_attributes = True
