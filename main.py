@@ -8,6 +8,7 @@ from repository import crud, models, schema
 from repository.database import SessionLocal, engine
 from util import health_check_util
 from config import settings
+import uvicorn
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -66,6 +67,8 @@ async def health_check_job():
         crud.update_server(db, server_schema)
     print("Job has finished!...")
 
+if __name__ == "__main__":
+    uvicorn.run("asclepius:app", host="0.0.0.0", port=settings.app_port)
 
 scheduler.add_job(health_check_job, 'interval', seconds=settings.health_check_time)
 scheduler.start()

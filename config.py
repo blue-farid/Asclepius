@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     db_host: str
     db_port: str
     health_check_time: int
+    app_port: int
 
     class Config:
         env_file = "config.env"
