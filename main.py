@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from repository import crud, models, schema
 from repository.database import SessionLocal, engine
 from util import health_check_util
+from config import settings
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -66,5 +67,5 @@ async def health_check_job():
     print("Job has finished!...")
 
 
-scheduler.add_job(health_check_job, 'interval', seconds=10)
+scheduler.add_job(health_check_job, 'interval', seconds=settings.health_check_time)
 scheduler.start()

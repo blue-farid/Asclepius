@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     db_pass: str
     db_host: str
     db_port: str
+    health_check_time: int
 
     class Config:
         env_file = "config.env"
