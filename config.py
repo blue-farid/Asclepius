@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     db_port: str
 
     class Config:
-        env_file = "../config.env"
+        env_file = "config.env"
 
 
 settings = Settings()

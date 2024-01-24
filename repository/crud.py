@@ -21,9 +21,13 @@ def create_server(db: Session, server: ServerCreate):
 
 
 def update_server(db: Session, server: schema_server):
-    db_server = Server(id=server.id, last_failure=server.last_failure, success=server.success, failure=server.failure)
-
-    db.add(db_server)
-    db.commit()
-    db.refresh(db_server)
-    return db_server
+    db_server = db.query(Server).filter(Server.id == server.id).first()
+    if db_server:
+        db_server.last_failure = server.last_failure
+        db_server.success = server.success
+        db_server.failure = server.failure
+        db.commit()
+        db.refresh(db_server)
+        return db_server
+    else:
+        return None
