@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: asclepius-service
+  name: asclepius-deployment
 spec:
   replicas: 2
   selector:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: asclepius-service
-        image: bluefarid/asclepius:0.0.3
+        image: bluefarid/asclepius:0.0.4
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
