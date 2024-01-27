@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asclepius-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: asclepius-service
+  template:
+    metadata:
+      labels:
+        app: asclepius-service
+    spec:
+      containers:
+      - name: asclepius-service
+        image: bluefarid/asclepius:0.0.3
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: asclepius-config
+        resources:
+          requests:
+            cpu: "100m"  # Adjusted
+            memory: "100Mi"  # Adjusted
+          limits:
+            cpu: "500m"  # Adjusted
+            memory: "1024Mi"  # Adjusted
+
