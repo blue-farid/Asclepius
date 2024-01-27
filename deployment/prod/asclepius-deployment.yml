@@ -12,9 +12,24 @@ spec:
       labels:
         app: asclepius-service
     spec:
+      dnsPolicy: "None"  # Specify your own DNS settings for the pods.
+      dnsConfig:
+        nameservers:
+          - "8.8.8.8"
+          - "8.8.4.4"
+          - "10.96.0.10"
+        searches:
+          - prod.svc.cluster.local  # This allows resolution of services within the 'prod' namespace
+          - svc.cluster.local  # This allows resolution of services in any namespace
+          - cluster.local  # This is for cluster level resources
+          - my.dns.search.suffix
+        options:
+          - name: ndots
+            value: "2"
+          - name: edns0
       containers:
       - name: asclepius-service
-        image: bluefarid/asclepius:0.0.4
+        image: bluefarid/asclepius:0.0.5
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
