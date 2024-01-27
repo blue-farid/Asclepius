@@ -68,7 +68,7 @@ async def health_check_job():
     print("Job has finished!...")
 
 if __name__ == "__main__":
-    uvicorn.run("asclepius:app", host="0.0.0.0", port=settings.app_port)
+    uvicorn.run("main:app", host="0.0.0.0", port=settings.app_port)
 
 scheduler.add_job(health_check_job, 'interval', seconds=settings.health_check_time)
 scheduler.start()
