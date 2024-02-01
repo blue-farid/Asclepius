@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: asclepius-service
-        image: bluefarid/asclepius:0.0.6
+        image: bluefarid/asclepius:0.0.7
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
@@ -28,4 +28,30 @@ spec:
           limits:
             cpu: "500m"  # Adjusted
             memory: "1024Mi"  # Adjusted
+
+        startupProbe:
+          httpGet:
+            path: /metrics
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 10
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 1
+          successThreshold: 1
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 8080
+          initialDelaySeconds: 1
+          periodSeconds: 1
+          timeoutSeconds: 5
+          failureThreshold: 5
 
