@@ -9,12 +9,15 @@ from repository.database import SessionLocal, engine
 from util import health_check_util
 from config import settings
 import uvicorn
+from prometheus_fastapi_instrumentator import Instrumentator
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 scheduler = AsyncIOScheduler()
+
+Instrumentator().instrument(app).expose(app)
 
 
 def get_db():
