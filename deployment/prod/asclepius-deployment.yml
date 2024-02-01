@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: asclepius-service
-        image: bluefarid/asclepius:0.0.5
+        image: bluefarid/asclepius:0.0.6
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
