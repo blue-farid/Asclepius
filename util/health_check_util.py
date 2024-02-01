@@ -19,4 +19,4 @@ async def is_healthy(server: Server):
 
 
 def build_url(ip: str):
-    return "http://" + ip
+    return "https://" + ip
